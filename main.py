@@ -1,5 +1,4 @@
 import os
-import datetime
 
 from flask import Flask, render_template, request, Response
 import sqlalchemy
@@ -34,14 +33,20 @@ def login():
     )
     try:
         with db.connect() as coon:
-            aa = coon.execute(stmt)
+            aa = coon.execute(stmt).fetchone()
     except Exception as e:
         return Response(
             status=500,
             response=f'RRR {e} , {aa}'
         )
     if request.method == 'GET':
-        return render_template('login.html', data=aa[0])
+        try:
+            return render_template('login.html', data=aa[0])
+        except Exception as e:
+            return Response(
+                status=500,
+                response=f'RRR {e} , {aa}'
+            )
 
     return render_template('login.html')
 
