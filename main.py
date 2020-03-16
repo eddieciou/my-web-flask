@@ -41,7 +41,7 @@ def login():
             response=f'RRR {e} , {aa}'
         )
     if request.method == 'GET':
-        return render_template('login.html', data='2233')
+        return render_template('login.html', data=aa)
 
     return render_template('login.html')
 
