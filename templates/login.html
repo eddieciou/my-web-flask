@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}使用者登入{% endblock %}
+
+{% block main%}
+<div class="container">
+    <div class="col-6 offset-3">
+        <div class="card card-outline-secondary my-4">
+            <div class="card-body">
+                <h5 class="card-title">使用者登入</h5>
+                <form method="post" action="/login" class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-inline">帳號：<input type="text" class="form-control" name="user_id"/></label>
+                            <label class="form-inline">密碼：<input type="password" class="form-control" name="password"/></label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-success col">登入</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
