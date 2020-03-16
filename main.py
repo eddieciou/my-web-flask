@@ -1,7 +1,7 @@
 import os
+import datetime
 
-
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
 import sqlalchemy
 
 
@@ -29,8 +29,19 @@ db = sqlalchemy.create_engine(
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    stmt = sqlalchemy.text(
+        "SELECT * FROM users"
+    )
+    try:
+        with db.connect() as coon:
+            aa = coon.execute(stmt)
+    except Exception as e:
+        return Response(
+            status=500,
+            response=f'RRR {e} , {aa}'
+        )
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('login.html', data='2233')
 
     return render_template('login.html')
 
