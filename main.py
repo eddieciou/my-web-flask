@@ -14,7 +14,7 @@ db = SQLAlchemy()
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqldb://{db_user}:{db_pass}@/{db_name}' \
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{db_user}:{db_pass}@/{db_name}' \
     f'?unix_socket=/cloudsql/{cloud_sql_connection_name}'
 
 db.init_app(app)
