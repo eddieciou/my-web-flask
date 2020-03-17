@@ -37,27 +37,34 @@ db.init_app(app)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    sql_cmd = """
-        select *
-        from users
-        """
     try:
-        aa = db.engine.execute(sql_cmd)
-    except Exception as e:
-        return Response(
-            status=500,
-            response=f'RRR {e} , {aa}'
-        )
-    if request.method == 'GET':
+        aa = 'init'
+        sql_cmd = """
+            select *
+            from users
+            """
         try:
-            return render_template('login.html', data=aa)
+            aa = db.engine.execute(sql_cmd)
         except Exception as e:
             return Response(
                 status=500,
                 response=f'RRR {e} , {aa}'
             )
+        if request.method == 'GET':
+            try:
+                return render_template('login.html', data=aa)
+            except Exception as e:
+                return Response(
+                    status=500,
+                    response=f'RRR {e} , {aa}'
+                )
 
-    return render_template('login.html')
+        return render_template('login.html')
+    except Exception as e:
+        return Response(
+            status=500,
+            response=f'RRR {e} , {aa}'
+        )
 
 
 if __name__ == '__main__':
