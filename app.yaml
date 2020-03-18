@@ -9,7 +9,7 @@ handlers:
 - url: /.*
   secure: always
   redirect_http_response_code: 301
-  script: app.main
+  script: auto
 
 env_variables:
   CLOUD_SQL_CONNECTION_NAME: my-web-271300:asia-east2:myweb-mysql
