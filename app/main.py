@@ -1,6 +1,6 @@
 # import os
 # from flask import Flask
-# from app import modules
+# from . import modules
 #
 # app = Flask(__name__)
 # modules.init_app(app)
