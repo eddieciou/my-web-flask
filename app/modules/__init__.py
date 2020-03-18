@@ -1,18 +1,9 @@
-import os
 import json
 import logging
 
 from . import auth
 from flask_restful import Api
 from flask import Blueprint, request
-from flask_sqlalchemy import SQLAlchemy
-
-db_user = os.environ.get("DB_USER")
-db_pass = os.environ.get("DB_PASS")
-db_name = os.environ.get("DB_NAME")
-cloud_sql_connection_name = os.environ.get("CLOUD_SQL_CONNECTION_NAME")
-
-db = SQLAlchemy()
 
 
 def init_app(app):
