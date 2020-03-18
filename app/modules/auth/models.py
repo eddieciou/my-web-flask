@@ -1,6 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from app.extenstions.sql_conn import db
 
 
 class Role(db.Model):

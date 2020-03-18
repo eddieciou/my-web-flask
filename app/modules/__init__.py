@@ -16,10 +16,6 @@ db = SQLAlchemy()
 
 
 def init_app(app):
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{db_user}:{db_pass}@/{db_name}' \
-        f'?unix_socket=/cloudsql/{cloud_sql_connection_name}'
-
     blueprint = Blueprint('web', __name__)
     # api = Api(
     #     blueprint,
@@ -29,7 +25,6 @@ def init_app(app):
     # )
     # app.register_blueprint(blueprint, url_prefix='/v1')
     app.register_blueprint(blueprint, url_prefix='/v1')
-    db.init_app(app)
     api = Api(app)
     auth.register_resources(api)
 
