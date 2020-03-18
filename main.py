@@ -1,10 +1,10 @@
 from flask import Flask
 
-from app import extenstions, modules
+from app import modules
 
 app = Flask(__name__)
 
-extenstions.init_app(app)
+# extenstions.init_app(app)
 modules.init_app(app)
 
 
