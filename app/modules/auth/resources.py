@@ -12,4 +12,3 @@ class Login(Resource):
             return {
                 "error": f'{e}'
             }
-        # return make_response(render_template('login.html', data="dddd"))
