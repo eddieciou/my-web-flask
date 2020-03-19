@@ -54,7 +54,3 @@ def internal_server_error(e):
 
 extenstions.init_app(app)
 modules.init_app(app)
-
-
-if __name__ == '__main__':
-    app.run()
