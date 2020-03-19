@@ -8,9 +8,12 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from app.modules.auth.models import User
 from app.extenstions.sql_conn import db
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'efgrsfewgewSSl'
+
+migrate = Migrate(app, db)
 
 
 class NameForm(FlaskForm):
