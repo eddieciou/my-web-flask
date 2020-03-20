@@ -2,7 +2,7 @@ from datetime import datetime
 
 from flask import Flask, render_template, session, redirect, url_for, flash
 from app import modules, extenstions
-
+from flask import request
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -54,3 +54,7 @@ def internal_server_error(e):
 
 extenstions.init_app(app)
 modules.init_app(app)
+
+
+if __name__ == '__main__':
+    app.run()

@@ -10,9 +10,11 @@
                 <h5 class="card-title">使用者登入</h5>
                 <form method="post" action="/login" class="form-group">
                     <div class="row">
-                        <div class="col">
-                            <label class="form-inline">帳號：<input type="text" class="form-control" name="user_id"/></label>
-                            <label class="form-inline">密碼：<input type="password" class="form-control" name="password"/></label>
+                        <div>
+                            {{ form.username.label }}{{ form.username }}
+                        </div>
+                        <div>
+                            {{ form.password.label }}{{ form.password }}
                         </div>
                     </div>
 
