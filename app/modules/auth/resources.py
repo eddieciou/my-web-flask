@@ -18,7 +18,7 @@ class Login(Resource):
             # login_user(user, form.remember_me.data)
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
-                next = url_for('index')
+                next = url_for('dashboard')
             return redirect(next)
         flash('登入失敗，請檢查帳號與密碼')
         return make_response(render_template('login.html', form=form))

@@ -2,7 +2,7 @@ import json
 import logging
 
 from . import auth
-from . import hihi
+from . import dashboard
 from flask_restful import Api
 from flask import Blueprint, request
 
@@ -19,7 +19,7 @@ def init_app(app):
     app.register_blueprint(blueprint, url_prefix='/v1')
     api = Api(app)
     auth.register_resources(api)
-    hihi.register_resources(api)
+    dashboard.register_resources(api)
 
     @app.before_request
     def do_before_request():
