@@ -2,13 +2,14 @@ from flask_restful import Resource
 from flask import render_template, make_response, redirect, url_for, flash, request
 from flask_login import login_user, logout_user
 from .models import User
-from .form import LoginForm
+from .form import LoginForm, RegistrationForm
+from app.extenstions.sql_conn import db
 
 
 class Login(Resource):
     def get(self):
         form = LoginForm()
-        return make_response(render_template('login.html', form=form))
+        return make_response(render_template('auth/login.html', form=form))
 
     def post(self):
         form = LoginForm()
@@ -21,7 +22,7 @@ class Login(Resource):
                 next = url_for('dashboard')
             return redirect(next)
         flash('登入失敗，請檢查帳號與密碼')
-        return make_response(render_template('login.html', form=form))
+        return make_response(render_template('auth/login.html', form=form))
 
 
 class Logout(Resource):
@@ -29,4 +30,22 @@ class Logout(Resource):
         logout_user()
         flash('使用者已登出')
         form = LoginForm()
-        return make_response(render_template('login.html', form=form))
+        return make_response(render_template('auth/login.html', form=form))
+
+
+class Register(Resource):
+    def get(self):
+        form = RegistrationForm()
+        return make_response(render_template('auth/register.html', form=form))
+
+    def post(self):
+        form = RegistrationForm()
+        user = User()
+        user.username = form.username.data
+        user.password = form.password.data
+        user.role_id = 1
+        db.session.add(user)
+        db.session.commit()
+        flash('註冊成功')
+        return {'fef': 'rfrg'}
+
