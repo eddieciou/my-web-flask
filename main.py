@@ -20,6 +20,16 @@ class NameForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
 
 
+@app.route('/test_react')
+def test_react():
+    return render_template('test_react.html')
+
+
+@app.route('/test_react2')
+def test_react2():
+    return render_template('test_react2.html', my_name='eddie')
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = NameForm()
