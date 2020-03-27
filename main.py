@@ -1,69 +1,17 @@
-from datetime import datetime
-
-from flask import Flask, render_template, session, redirect, url_for, flash
-from app import modules, extenstions
-from flask import request
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
-from app.modules.auth.models import User
-from app.extenstions.sql_conn import db
-# from flask_migrate import Migrate
+from flask import Flask
+from routes.Web import web
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'efgrsfewgewSSl'
+app.config['SECRET_KEY'] = 'eff2b5ea073d43e331ae0e77e44d2bb46b688d0489f701db'
+
+app.register_blueprint(web, url_prefix='/web_api')
 
 # migrate = Migrate(app, db)
 
 
-class NameForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
-
-
-@app.route('/test_react')
-def test_react():
-    return render_template('test_react.html')
-
-
-@app.route('/test_react2')
-def test_react2():
-    return render_template('test_react2.html', my_name='eddie')
-
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    form = NameForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.name.data).first()
-        if user is None:
-            user = User(username=form.name.data, role_id=1)
-            db.session.add(user)
-            db.session.commit()
-            session['known'] = False
-        else:
-            session['known'] = True
-        session['name'] = form.name.data
-        return redirect(url_for('index'))
-    return render_template('index.html', form=form, name=session.get('name'), known=session.get('known', False))
-
-
-@app.route('/hello')
-def hello_world():
-    return render_template('user.html', name='eddie')
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
-
-
-@app.errorhandler(500)
-def internal_server_error(e):
-    return render_template('500.html'), 500
-
-
-extenstions.init_app(app)
-modules.init_app(app)
+    return 'Croxera Reservation API Server with mongo'
 
 
 if __name__ == '__main__':
