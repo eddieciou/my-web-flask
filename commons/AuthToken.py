@@ -8,7 +8,7 @@ from utils.AESCipherUtil import AESCipherUtil
 log = logging.getLogger('Auth')
 
 
-TOKEN_EXPIRATION = 10
+TOKEN_EXPIRATION = 3600
 SECRET_KEY = "5d0c2f33c9e82e3c723dcab2"
 AES_KEY = "abf5b03e755f6ae4d0f14b8be4b87691"
 
