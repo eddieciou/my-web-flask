@@ -1,4 +1,4 @@
-# import logging
+import logging
 from flask import Blueprint
 from controller.mobile.MobileRequest import MobileRequest
 

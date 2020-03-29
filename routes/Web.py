@@ -1,4 +1,4 @@
-# import logging
+import logging
 from config import setting
 from flask import Blueprint, request
 from controller.web.Auth import Auth
