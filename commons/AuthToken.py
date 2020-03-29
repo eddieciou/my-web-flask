@@ -1,11 +1,11 @@
-# import logging
+import logging
 import jwt
 
 from flask import g
 from time import time
 from utils.AESCipherUtil import AESCipherUtil
 
-# log = logging.getLogger('Auth')
+log = logging.getLogger('Auth')
 
 
 TOKEN_EXPIRATION = 3600
@@ -23,17 +23,17 @@ class AuthToken:
             token = cipher.decrypt(encrypted_token)
             obj = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
             user_id = obj["sub"]
-            # log.info(f'Operation executed by:{user_id}')
+            log.info(f'Operation executed by:{user_id}')
             if user_id:
                 g.current_user_id = user_id
             return True
         except (jwt.DecodeError, TypeError, ValueError) as e:
-            # log.warning(f'Invalid token:{e}')
+            log.warning(f'Invalid token:{e}')
             return False
         except jwt.ExpiredSignatureError:
             user_payload = jwt.decode(token, SECRET_KEY, options={'verify_exp': False})
             user_id = user_payload["sub"]
-            # logging.info(f"Expired token of {user_id}")
+            logging.info(f"Expired token of {user_id}")
             return False
 
     @staticmethod

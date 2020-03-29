@@ -1,4 +1,4 @@
-# import logging
+import logging
 from flask import request
 from models.Users import Users
 from commons.Response import response
@@ -7,11 +7,10 @@ from commons.AuthToken import AuthToken
 
 class Auth:
     def __init__(self):
-        pass
-        # self.logging = logging.getLogger(__name__)
+        self.logging = logging.getLogger(__name__)
 
     def login(self):
-        # self.logging.info("login")
+        self.logging.info("login")
 
         data = request.json
         account = data.get('account')

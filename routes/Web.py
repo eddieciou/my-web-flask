@@ -6,7 +6,7 @@ from controller.web.Schedules import Schedules
 from commons.AuthToken import AuthToken
 from commons.Response import response
 
-# logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 web = Blueprint('web', __name__)
 
 
@@ -24,13 +24,13 @@ def register_blueprint(app):
 @web.before_request
 def before_request():
     # 網頁API Before Request
-    # logger.info('before_request')
+    logger.info('before_request')
 
     environ = request.headers.environ
-    # logger.info('Header')
-    # logger.debug(environ)
+    logger.info('Header')
+    logger.debug(environ)
     request_path = environ['PATH_INFO']
-    # logger.debug(request_path)
+    logger.debug(request_path)
 
     if request_path in setting.VerifyExceptionPaths:
         return
@@ -39,8 +39,8 @@ def before_request():
     user_id = request.headers.get('user_id', None)
     jwt_token = request.headers.get('Authorization', None)
 
-    # logger.info(f'jwt_token: {jwt_token}')
-    # logger.info(f'user_id: {user_id}')
+    logger.info(f'jwt_token: {jwt_token}')
+    logger.info(f'user_id: {user_id}')
 
     auth_token = AuthToken.verify_token(jwt_token)
     if auth_token:
