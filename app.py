@@ -1,23 +1,23 @@
-import logging
+# import logging
 
 import extenstions
 
 from flask import Flask
 
 from routes import Mobile, Web
-from config.logging import RequestFormatter
+# from config.logging import RequestFormatter
 
 
-# Customize Logging Setting 只在main 加載,避免 不同Service 的 logging 互相影響
-formatter = RequestFormatter(
-    '[%(uuid)s] - %(asctime)s - (%(process)d-%(thread)d) - %(name)s[%(levelname)s] - %(message)s'
-)
-sh = logging.StreamHandler()
-sh.setFormatter(formatter)
-
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
-logger.addHandler(sh)
+# # Customize Logging Setting 只在main 加載,避免 不同Service 的 logging 互相影響
+# formatter = RequestFormatter(
+#     '[%(uuid)s] - %(asctime)s - (%(process)d-%(thread)d) - %(name)s[%(levelname)s] - %(message)s'
+# )
+# sh = logging.StreamHandler()
+# sh.setFormatter(formatter)
+#
+# logger = logging.getLogger()
+# logger.setLevel(logging.DEBUG)
+# logger.addHandler(sh)
 
 
 app = Flask(__name__)
